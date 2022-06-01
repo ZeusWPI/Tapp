@@ -34,7 +34,7 @@ def example_listen(UDPServerSocket):
         message = bytesAddressPair[0]
         address = bytesAddressPair[1]
         clientMsg = "Message from Client:{}".format(message)
-        data = message.decode('utf-8').split(";")
+        data = message.decode("utf-8").split(";")
         [x, y, z] = [float(a) for a in data]
 
         # clientIP = "Client IP Address:{}".format(address)

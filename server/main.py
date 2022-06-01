@@ -10,7 +10,7 @@ from pygame import transform
 from server import create_server
 
 game_folder = os.path.dirname(__file__)
-img_folder = os.path.join(game_folder, 'img')
+img_folder = os.path.join(game_folder, "img")
 
 WIDTH = 1400  # width of our game window
 HEIGHT = 960  # height of our game window
@@ -39,7 +39,9 @@ class Player(pygame.sprite.Sprite):
         self.uid = uid
 
         pygame.sprite.Sprite.__init__(self)
-        player_img = pygame.image.load(os.path.join(img_folder, 'betterracket.png')).convert()
+        player_img = pygame.image.load(
+            os.path.join(img_folder, "betterracket.png")
+        ).convert()
 
         self.image = player_img
         self.image.set_colorkey(BLACK)
@@ -103,12 +105,12 @@ def main():
             message = bytesAddressPair[0]
             address = bytesAddressPair[1]
             clientMsg = "Message from Client:{}".format(message)
-            data = message.decode('utf-8').split(";")
+            data = message.decode("utf-8").split(";")
             [x, y, z] = [float(a) for a in data]
             if address in clients:
-                clients[address]['event'] = [x, y, z]
+                clients[address]["event"] = [x, y, z]
             else:
-                clients[address] = {'event': [0, 0, 0]}
+                clients[address] = {"event": [0, 0, 0]}
                 if p1_address is None:
                     print("Player 2 connected")
                     p2_address = address
@@ -119,9 +121,9 @@ def main():
             pass
 
         if p1_address is not None:
-            player1.move(clients[p1_address]['event'])
+            player1.move(clients[p1_address]["event"])
         if p2_address is not None:
-            player2.move(clients[p2_address]['event'])
+            player2.move(clients[p2_address]["event"])
 
         all_sprites.update()
 
